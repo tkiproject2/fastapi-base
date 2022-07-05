@@ -1,0 +1,28 @@
+mongodb-user:
+  ENGINE: "mongodb"
+  DRIVER: "motor"
+  NAME: "user_service"
+  USER: ""
+  PASSWORD: ""
+  HOST: "localhost"
+  PORT: 27017
+
+fastapi:
+  projectName: "SOLUSI"
+  environment: "development"
+  debug: true
+  key: "jlkur98362"
+  timezone: "Asia/Jakarta"
+  
+redis-queue:
+  HOST: "localhost"
+  PORT: 6379
+
+redis-data:
+  HOST: "localhost"
+  PORT: 6379
+
+client-base-url:
+  user-service: "user-service"
+  notif-service: "notif-service"
+  auth-service: "auth-service"
