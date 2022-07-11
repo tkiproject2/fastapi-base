@@ -1,12 +1,12 @@
 # ===== Module & Library
 import re
 
-from bson.objectid import ObjectId
 import phonenumbers
-from util.util_http_exception import BadRequestException
-from model.enum.enum_exception import BadRequestExceptionMessage
+from bson.objectid import ObjectId
 from loguru import logger
 
+from model.enum.enum_exception import BadRequestExceptionMessage
+from util.util_http_exception import BadRequestException
 
 # ===== Header
 regexEmail = re.compile(
@@ -29,9 +29,12 @@ regexEmail = re.compile(
 
 #     return True
 
+
 def ValidatePhoneNumber(phone_number: str):
     """Function to validate phone number"""
-    phoneFormat = format(int(phone_number[:-1]), ",").replace(",", "-") + phone_number[-1]
+    phoneFormat = (
+        format(int(phone_number[:-1]), ",").replace(",", "-") + phone_number[-1]
+    )
 
     validPhone = False
     try:
@@ -39,12 +42,11 @@ def ValidatePhoneNumber(phone_number: str):
     except:
         raise BadRequestException(BadRequestExceptionMessage.INVALID_PHONE_NUMBER)
 
-
     try:
         validPhone = phonenumbers.is_valid_number(my_number)
     except:
         raise BadRequestException(BadRequestExceptionMessage.INVALID_PHONE_NUMBER)
-    
+
     if not validPhone:
         return False
 
@@ -52,6 +54,7 @@ def ValidatePhoneNumber(phone_number: str):
         return phone_number.isnumeric()
     else:
         return False
+
 
 def ValidateEmail(strEmail: str):
     """Function to validate email"""

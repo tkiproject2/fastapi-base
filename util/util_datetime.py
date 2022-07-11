@@ -1,12 +1,12 @@
 # ===== Module & Library
 from datetime import datetime
-from config.config import Settings
-from model.enum.enum_exception import BadRequestExceptionMessage
 
 import pytz
-
-from util.util_http_exception import BadRequestException
 from loguru import logger
+
+from config.config import Settings
+from model.enum.enum_exception import BadRequestExceptionMessage
+from util.util_http_exception import BadRequestException
 
 # ===== Header
 INDONESIA_TIMEZONE = pytz.timezone(Settings().TIMEZONE)
@@ -16,7 +16,7 @@ TIME_FORMAT = "%H:%M:%S"
 UTC_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 # ===== Function
 def DateNow():
-    """Function to get current date """
+    """Function to get current date"""
 
     dt = datetime.strptime(
         datetime.now(tz=INDONESIA_TIMEZONE).strftime(DATETIME_FORMAT), DATETIME_FORMAT
@@ -25,7 +25,7 @@ def DateNow():
 
 
 def DateNowStr():
-    """Function to get current string date """
+    """Function to get current string date"""
 
     dt = datetime.now(tz=INDONESIA_TIMEZONE).strftime(DATE_FORMAT)
     return dt
@@ -43,7 +43,7 @@ def StrDateToDate(strDate: str):
 
 
 def TimeNow():
-    """Function to get current time """
+    """Function to get current time"""
 
     dt = datetime.strptime(
         datetime.now(tz=INDONESIA_TIMEZONE).strftime(DATETIME_FORMAT), DATETIME_FORMAT
@@ -52,7 +52,7 @@ def TimeNow():
 
 
 def TimeNowStr():
-    """Function to get current string time """
+    """Function to get current string time"""
 
     dt = datetime.now(tz=INDONESIA_TIMEZONE).strftime(TIME_FORMAT)
     return dt
@@ -70,7 +70,7 @@ def strTimeToTime(strTime: str):
 
 
 def DateTimeNow():
-    """Function to get current datetime """
+    """Function to get current datetime"""
 
     dt = datetime.strptime(
         datetime.now(tz=INDONESIA_TIMEZONE).strftime(DATETIME_FORMAT), DATETIME_FORMAT
@@ -79,7 +79,7 @@ def DateTimeNow():
 
 
 def DatetimeNowStr():
-    """Function to get current string time """
+    """Function to get current string time"""
 
     dt = datetime.now(tz=INDONESIA_TIMEZONE).strftime(DATETIME_FORMAT)
     return dt

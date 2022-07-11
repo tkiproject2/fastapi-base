@@ -20,7 +20,14 @@ hsts = secure.StrictTransportSecurity().include_subdomains().preload().max_age(3
 referrer = secure.ReferrerPolicy().strict_origin_when_cross_origin()
 
 permissions_value = (
-    secure.PermissionsPolicy().geolocation("self").vibrate().microphone("none").usb("none").camera("none").magnetometer("none").accelerometer("none")
+    secure.PermissionsPolicy()
+    .geolocation("self")
+    .vibrate()
+    .microphone("none")
+    .usb("none")
+    .camera("none")
+    .magnetometer("none")
+    .accelerometer("none")
 )
 
 cache_value = secure.CacheControl().no_cache().no_store().no_transform()
@@ -37,8 +44,8 @@ secure_headers = secure.Secure(
     hsts=hsts,
     referrer=referrer,
     permissions=permissions_value,
-    cache=cache_value,   
-    xxp=xss    
+    cache=cache_value,
+    xxp=xss
     # xfo=xfo
     # feature=feature
 )

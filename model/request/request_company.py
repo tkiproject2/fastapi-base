@@ -1,16 +1,19 @@
 import ipaddress
-from aiohttp import request
-from bson.objectid import ObjectId
+from datetime import date, datetime
 from enum import Enum
-from pydantic import BaseModel, Field
 from typing import Any, List
-from datetime import datetime, date
+
+from aiohttp import request
 from beanie import PydanticObjectId
+from bson.objectid import ObjectId
+from faker import Faker
+from pydantic import BaseModel, Field
+
 from model.model_default import AddressData
 from util.util_generate import RandomNumber, RandomString
-from faker import Faker
 
 fake = Faker()
+
 
 class CreateCompanyRequest(BaseModel):
     name: str = None

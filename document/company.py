@@ -1,14 +1,16 @@
-from typing import Optional, Any
-from util.util_generate import RandomNumber, RandomString
+from typing import Any, List, Optional
+
 from beanie import Document
-from model.model_default import AddressData
-from typing import List
 from faker import Faker
-from model.request.request_company import CreateCompanyRequest 
+
+from model.model_default import AddressData
+from model.request.request_company import CreateCompanyRequest
+from util.util_generate import RandomNumber, RandomString
 
 fake = Faker()
 
-class CompanyDocument(Document):    
+
+class CompanyDocument(Document):
     name: str
     initial: str
     address: AddressData
@@ -21,12 +23,11 @@ class CompanyDocument(Document):
     customKey: str = None
     smsGateway: str = None
     waGateway: str = None
-    emailGateway: str = None    
-
+    emailGateway: str = None
 
     def __init__(self, **data: Any):
         super().__init__(**data)
-        print('do my stuff...')
+        print("do my stuff...")
 
     class Collection:
         name = "tbl_company"
@@ -44,5 +45,3 @@ class CompanyDocument(Document):
                 "maxUser": 1000,
             }
         }
-
-

@@ -1,11 +1,13 @@
 import ipaddress
-from aiohttp import request
-from bson.objectid import ObjectId
+from datetime import date, datetime
 from enum import Enum
-from pydantic import BaseModel, Field
 from typing import Any, List
-from datetime import datetime, date
+
+from aiohttp import request
 from beanie import PydanticObjectId
+from bson.objectid import ObjectId
+from pydantic import BaseModel, Field
+
 
 class JwtToken(BaseModel):
     tblName: str = None
@@ -16,6 +18,7 @@ class JwtToken(BaseModel):
     exp: int = 1000
     lang: str = "id"
 
+
 class JwtGateway(JwtToken):
     createTime: datetime = datetime.now()
     updateTime: datetime = datetime.now()
@@ -24,7 +27,7 @@ class JwtGateway(JwtToken):
     key2: List[str] = []
     ipaddress: List[str] = []
     deviceIdentity: str = None
-    
+
 
 class Token(BaseModel):
     access_token: str
@@ -37,7 +40,9 @@ class JwtBase(JwtToken):
     expiredTime: datetime = None
     ip: str = None
 
+
 # ================================================================
+
 
 class DefaultData(BaseModel):
     createTime: datetime = datetime.now()
@@ -55,6 +60,7 @@ class DefaultPage(BaseModel):
     totalPages: int = 0
     sort: int = 0
     sortDirection: str = None
+
 
 # Address Default Model
 # =================================================================
@@ -74,6 +80,7 @@ class DistrictBase(BaseModel):
     regency_id: str = None
     name: str = None
 
+
 class EmailData(BaseModel):
     name: str = None
     projectName: str = None
@@ -81,9 +88,11 @@ class EmailData(BaseModel):
     emailTo: str = None
     token: str = None
 
+
 class CoordinateData(BaseModel):
     type: str = "Point"
     coordinates: List[float] = []
+
 
 class AddressData(BaseModel):
     province: str = None
@@ -95,11 +104,13 @@ class AddressData(BaseModel):
     location: CoordinateData = None
     note: str = None
 
+
 # Client Response Default Model
 # =================================================================
 class ClientHttpBasicAuth(BaseModel):
     username: str
     password: str
+
 
 class ClientResponseModel(BaseModel):
     requestTime: datetime = None
@@ -113,10 +124,12 @@ class ClientResponseModel(BaseModel):
     responseBody: Any = None
     responseTime: datetime = None
 
+
 # Default Success Response Model
 # =================================================================
 
+
 class ResponseModel(BaseModel):
-    status_code : int
+    status_code: int
     message: str
     data: Any = None

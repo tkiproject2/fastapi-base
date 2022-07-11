@@ -4,6 +4,7 @@ from typing import Any
 
 from fastapi import HTTPException
 from fastapi.responses import JSONResponse
+
 from model.enum.enum_response_message import *
 
 # ===== Header
@@ -17,54 +18,70 @@ from model.enum.enum_response_message import *
 class NotModifiedException(HTTPException):
     def __init__(
         self,
-        detail: Any = NotModifiedErrorMessage,
+        type=NotModifiedErrorMessage,
+        message: str = "",
     ) -> None:
-        super().__init__(status_code=HTTPStatus.NOT_MODIFIED.value, detail=detail)
+        super().__init__(
+            status_code=HTTPStatus.NOT_MODIFIED.value,
+            detail={"type": type, "message": message},
+        )
 
 
 # 4xx
 class BadRequestException(HTTPException):
     def __init__(
         self,
-        detail: BadRequestExceptionMessage = None,
+        type: BadRequestExceptionMessage,
+        message: str = "",
     ) -> None:
-        super().__init__(status_code=HTTPStatus.BAD_REQUEST.value, detail=detail)
-        # super().__init__(HTTPException (status_code = HTTPStatus.BAD_REQUEST, content = {"status_code" : HTTPStatus.BAD_REQUEST, "message": detail}))
-
+        super().__init__(
+            status_code=HTTPStatus.BAD_REQUEST.value,
+            detail={"type": type, "message": message},
+        )
 
 
 class UnauthorizedException(HTTPException):
     def __init__(
         self,
-        detail: UnauthorizedExceptionMessage = None,
+        type: UnauthorizedExceptionMessage,
+        message: str = "",
     ) -> None:
-        super().__init__(status_code=HTTPStatus.UNAUTHORIZED.value, detail=detail)
+        super().__init__(
+            status_code=HTTPStatus.UNAUTHORIZED.value,
+            detail={"type": type, "message": message},
+        )
 
 
 class ForbiddenException(HTTPException):
     def __init__(
         self,
-        detail: ForbidenExceptionMessage = None,
+        type: ForbidenExceptionMessage,
+        message: str = "",
     ) -> None:
-        super().__init__(status_code=HTTPStatus.FORBIDDEN.value, detail=detail)
+        super().__init__(
+            status_code=HTTPStatus.FORBIDDEN.value,
+            detail={"type": type, "message": message},
+        )
 
 
 class NotFoundException(HTTPException):
     def __init__(
         self,
-        detail: NotFoundExceptionMessage = None,
+        type: NotFoundExceptionMessage,
+        message: str = "",
     ) -> None:
-        super().__init__(status_code=HTTPStatus.NOT_FOUND.value, detail=detail)
+        super().__init__(
+            status_code=HTTPStatus.NOT_FOUND.value,
+            detail={"type": type, "message": message},
+        )
 
 
 # 5xx
 class InternalServerErrorException(HTTPException):
     def __init__(
-        self,
-        detail: InternalServerErrorExceptionMessage = None,
+        self, type: InternalServerErrorExceptionMessage, message: str = ""
     ) -> None:
         super().__init__(
-            status_code=HTTPStatus.INTERNAL_SERVER_ERROR.value, detail=detail
+            status_code=HTTPStatus.INTERNAL_SERVER_ERROR.value,
+            detail={"type": type, "message": message},
         )
-
-

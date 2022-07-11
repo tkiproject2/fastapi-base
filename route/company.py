@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from document.company import CompanyDocument
 from model.request.request_company import CreateCompanyRequest
 from model.response.response_company import CreateCompanyResponse
@@ -17,5 +18,3 @@ async def add_company(
     company = await CompanyDatabase.add_company(companySave)
 
     return SuccessResponse(company)
-
-
